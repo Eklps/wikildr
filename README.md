@@ -20,7 +20,10 @@ wikildr: Every ingest → compile into wiki → query against a ready-made knowl
 ```
 <wiki_root>/
 ├── raw/                    # Raw sources (immutable, agent read-only)
-│   └── assets/             # Images and attachments
+│   ├── papers/2024/        # Arbitrary subdirectories allowed
+│   ├── podcasts/<show>/    # Organize by type / time / project as you like
+│   ├── projects/<name>/    # Register the layout in SCHEMA.md
+│   └── assets/             # Images and attachments (global)
 ├── wiki/
 │   ├── sources/            # Source summary pages
 │   ├── entities/           # Entity pages (people, orgs, projects…)
@@ -161,7 +164,10 @@ wikildr: 每次摄取 → 编译进 wiki → 查询时直接用现成的知识�
 ```
 <wiki_root>/
 ├── raw/                    # 原始资料（不可变，agent 只读）
-│   └── assets/             # 图片等附件
+│   ├── papers/2024/        # 支持任意层级子目录
+│   ├── podcasts/<节目>/    # 按类型 / 时间 / 项目自由组织
+│   ├── projects/<名称>/    # 在 SCHEMA.md 中登记你的划分方式
+│   └── assets/             # 图片等附件（全局）
 ├── wiki/
 │   ├── sources/            # 每条资料的摘要页
 │   ├── entities/           # 实体页（人物、组织、项目……）

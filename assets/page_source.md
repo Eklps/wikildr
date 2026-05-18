@@ -1,8 +1,9 @@
 ---
 title: "<原文标题>"
 type: source
-slug: <kebab-case-slug>
-source_path: "raw/<原文件名>"
+slug: <kebab-case-slug>           # 不同子目录下若可能重名，加前缀避免冲突，如 papers-2024-xxx
+source_path: "raw/<相对 wiki_root 的完整路径，含所有子目录>"
+                                  # 例：raw/papers/2024/attention-is-all-you-need.pdf
 source_url: ""              # 若有
 author: ""
 published_at: ""
@@ -28,7 +29,7 @@ updated_at: "YYYY-MM-DD"
 ## 主要论点
 
 ### 论点 A
-- 断言： …… (raw/<file>#Lx)
+- 断言： …… (raw/<完整子路径>/<file>#Lx)
 - 证据/数据： ……
 
 ### 论点 B

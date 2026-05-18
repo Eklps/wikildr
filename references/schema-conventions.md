@@ -34,11 +34,39 @@ language: "zh-CN"          # 输出默认语言
 
 允许根据领域增设目录（例如读书 wiki 可加 `wiki/characters/`、`wiki/themes/`、`wiki/plot/`）。新增目录时在 SCHEMA 中登记。
 
+### 2.1 raw 目录划分约定
+
+`raw/` **支持任意层级的子目录**。用户自行选择组织方式，但应在此节登记下来，避免后续 ingest 时混乱。
+
+常见组织维度（任选一种或组合）：
+
+- **按类型**：`raw/papers/`、`raw/podcasts/`、`raw/chats/`、`raw/docs/`
+- **按时间**：`raw/2024/`、`raw/2025-Q1/`
+- **按项目**：`raw/projects/xauto/`、`raw/projects/wikildr/`
+- **按来源**：`raw/arxiv/`、`raw/twitter/`、`raw/internal/`
+
+填写示例：
+
+```yaml
+raw_layout:
+  scheme: "type-then-time"        # 自定义说明
+  top_level:
+    - papers/<year>/              # 论文按年份
+    - podcasts/<show-name>/       # 播客按节目
+    - projects/<project-name>/    # 项目相关文档
+    - chats/<year-quarter>/       # 聊天/讨论记录
+  assets_policy: "global"         # global = 统一放 raw/assets/；local = 各子目录就近放 assets/
+  slug_prefix_when_collision: true  # 不同子目录下重名文件时，sources slug 加路径前缀
+```
+
+> ⚠️ `source_path` frontmatter 和正文 `(raw/...)` 引用**必须使用相对 `<wiki_root>` 的完整路径**，例如 `raw/papers/2024/attention-is-all-you-need.pdf`，不允许省略中间子目录。
+
 ## 3. 命名约定
 
 - 文件名一律用 **kebab-case slug**：`xauto-cicd-flow.md`，避免空格、中文文件名。
-- 中文页面 title 写在 frontmatter `title:` 字段里，slug 用拼音或英译。
+- 中文页面 title 写在 frontmatter `title:` 字段��，slug 用拼音或英译。
 - 同名概念在不同上下文下要区分：`agent-llm.md` vs `agent-rl.md`，并在两页互相 `[[link]]`。
+- `wiki/sources/<slug>.md` 的 slug **不要求反映 raw 子目录层级**；但若 `raw_layout.slug_prefix_when_collision: true` 且不同子目录下出现同名文件，应使用带前缀的 slug，例如 `papers-2024-attention-is-all-you-need`、`podcasts-lex-fridman-ep-123`。
 
 ## 4. 实体类型枚举
 

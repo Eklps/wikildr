@@ -43,8 +43,19 @@
 完成骨架创建后向用户说明：
 
 1. 把要进入 wiki 的原始资料放到 `raw/` 下（保持原文件名，便于追溯）。
-2. 共同填好 `SCHEMA.md`（领域、目的、命名约定、工作流偏好）。
+   - `raw/` **支持任意层级子目录**，可以按类型、时间或项目组织，例如：
+     ```
+     raw/
+     ├── papers/2024/attention-is-all-you-need.pdf
+     ├── podcasts/lex-fridman/ep-123.md
+     ├── projects/xauto/design.md
+     ├── chats/2025-Q1/discussion.md
+     └── assets/                  # 全局图片附件
+         └── projects/xauto/      # 也可以就近建子目录附件
+     ```
+   - 选定一种组织方式后，建议在 `SCHEMA.md` 的 "raw 目录划分约定" 一节中记录下来，便于以后保持一致。
+2. 共同填好 `SCHEMA.md`（领域、目的、命名约定、raw 目录划分、工作流偏好）。
 3. 选择启动方式：
-   - **盘点式**：让 agent 扫描已存在的 raw/ 资料，建立第一版 wiki。
+   - **盘点式**：让 agent 扫描已存在的 raw/ 资料（递归遍历所有子目录），建立第一版 wiki。
    - **增量式**：从下一条新资料开始一条条 ingest。
 4. 推荐使用 Obsidian 打开 `<wiki_root>`，便于图谱视图浏览。

@@ -23,7 +23,16 @@ metadata:
 
 `<wiki_root>` 默认是当前工作区的根目录。如果用户没有显式说明，**第一次激活时必须先与用户确认根目录**，再在该目录下创建 `raw/`、`wiki/`、`SCHEMA.md`、`index.md`、`log.md` 五个最小骨架（参考 [assets/skeleton.md](assets/skeleton.md)）。
 
-⚠️ 永远不要修改 `raw/` 下的任何文件。如果原文有错，在 wiki 中标注；不动原文是为了保留可溯源性。
+### 关于 `raw/` 的��织方式
+
+`raw/` **支持任意层级的子目录**——用户可以按类型（`papers/`、`podcasts/`、`chats/`）、按时间（`2024/`、`2025-Q1/`）、按项目（`projects/xauto/`）或任意自定义维度组织。本 skill 对 raw 的内部结构**不做强制约定**，但要求 agent：
+
+- 在 frontmatter `source_path` 与正文引用 `(raw/...)` 中**始终使用相对 `<wiki_root>` 的完整路径**，例如 `raw/papers/2024/attention-is-all-you-need.pdf`，而不是只写文件名。
+- 当 raw 出现新的子目录划分模式时，主动建议把规则固化进 `SCHEMA.md` 的 "raw 目录划分约定" 一节。
+- `wiki/sources/<slug>.md` 的 slug **不强制反映 raw 的目录层级**，但当不同子目录下可能出现重名文件时，应使用带前缀的 slug（如 `papers-2024-attention-is-all-you-need`）避免冲突。
+- `raw/assets/` 仍然是默认的图片/附件存放位置；子目录内若有局部附件，可使用 `raw/<子目录>/assets/` 就近存放。
+
+⚠️ 永远不要修改 `raw/` 下的任何文件，也不要替用户重组 raw 的目录结构（即使你觉得更整洁）——raw 的组织权完全归用户。如果原文有错，在 wiki 中标注；不动原文是为了保留可溯源性。
 
 ---
 
